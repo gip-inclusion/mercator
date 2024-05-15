@@ -11,18 +11,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
-use LdapRecord\Laravel\Auth\HasLdapUser;
-use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 
 /**
  * App\User
  */
-class User extends Authenticatable implements LdapAuthenticatable
+class User extends Authenticatable
 {
-    use AuthenticatesWithLdap;
     use HasApiTokens;
-    use HasLdapUser;
     use Notifiable;
     use SoftDeletes;
 
