@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Ldap\LdapUser;
-use App\Ldap\Scopes\OnlyOrgUnitUser;
 use App\MApplication;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -32,17 +30,6 @@ class AuthServiceProvider extends ServiceProvider
         //if (! app()->runningInConsole()) {
         //    Passport::routes();
         //}
-
-        // if LDAP activated
-        if (env('LDAP_DOMAIN')) {
-            // LDAP Restrictions on connection
-            LDAPuser::addGlobalScope(new OnlyOrgUnitUser());
-
-            // Token expires after 4 hours
-            Passport::tokensExpireIn(now()->addHours(4));
-            Passport::refreshTokensExpireIn(now()->addHours(4));
-            Passport::personalAccessTokensExpireIn(now()->addHours(4));
-        }
 
         /**
          * MApplication
